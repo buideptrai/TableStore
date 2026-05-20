@@ -23,5 +23,16 @@ namespace TableStore.Areas.Admin.Controllers
             var users = await _userManager.Users.ToListAsync();
             return View(users);
         }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (string.IsNullOrEmpty(id)) return NotFound();
+            var user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                await _userManager.DeleteAsync(user);
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

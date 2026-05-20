@@ -48,6 +48,12 @@ namespace TableStore.Controllers
             }
 
             HttpContext.Session.Set("Cart", cart);
+            
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return Json(new { success = true, cartCount = cart.Sum(c => c.Quantity) });
+            }
+
             // Redirect to home with a success message or back to the same page
             return RedirectToAction("Index", "Home");
         }

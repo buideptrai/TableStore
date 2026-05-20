@@ -42,8 +42,7 @@
                             <td>
                                 <form asp-action="UpdateQuantity" method="post" class="d-flex align-items-center">
                                     <input type="hidden" name="productId" value="@item.ProductId" />
-                                    <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control form-control-sm me-2" style="width: 70px;" />
-                                    <button type="submit" class="btn btn-sm btn-outline-secondary">Cập nhật</button>
+                                    <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control form-control-sm me-2" style="width: 70px;" onchange="this.form.submit()" />
                                 </form>
                             </td>
                             <td class="text-danger fw-bold">@((item.Price * item.Quantity).ToString("N0")) VNĐ</td>

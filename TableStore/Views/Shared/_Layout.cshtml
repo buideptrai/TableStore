@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+@using Microsoft.AspNetCore.Http
+@using TableStore.Helpers
+@using TableStore.Models
+@inject IHttpContextAccessor HttpContextAccessor
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,14 +30,22 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3 me-1" viewBox="0 0 16 16">
-                                  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                                </svg>Giỏ hàng
-                            </a>
-                        </li>
-                        @if (User.Identity.IsAuthenticated)
+                        @if (!User.IsInRole("Admin"))
+                        {
+                            var cart = HttpContextAccessor.HttpContext?.Session.Get<List<CartItem>>("Cart") ?? new List<CartItem>();
+                            int cartCount = cart.Sum(c => c.Quantity);
+                            <li class="nav-item">
+                                <a class="nav-link text-dark position-relative" asp-area="" asp-controller="Cart" asp-action="Index">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3 me-1" viewBox="0 0 16 16">
+                                      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                    </svg>Giỏ hàng
+                                    <span id="cart-badge" class="position-absolute top-25 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.65em; @(cartCount > 0 ? "" : "display: none;")">
+                                        @cartCount
+                                    </span>
+                                </a>
+                            </li>
+                        }
+                        @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="History">Lịch sử mua hàng</a>
@@ -48,7 +60,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Index">Quản lý Sản Phẩm</a></li>
                                     <li><a class="dropdown-item" asp-area="Admin" asp-controller="ManageOrders" asp-action="Index">Quản lý Đơn hàng</a></li>
-                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="ManageUsers" asp-action="Index">Quản lý Khách hàng</a></li>
+                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="ManageUsers" asp-action="Index">Quản lý Tài khoản</a></li>
                                 </ul>
                             </li>
                         }
