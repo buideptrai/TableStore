@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TableStore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+46bd4eb22ca2590b1e968a4c11b3dc1c429638eb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aeaa46e74bcd7843702b07a6ad759e687d6f2566")]
 [assembly: System.Reflection.AssemblyProductAttribute("TableStore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TableStore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
