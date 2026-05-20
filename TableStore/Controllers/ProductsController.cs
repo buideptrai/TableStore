@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TableStore.Models;
@@ -10,6 +11,7 @@ using System.Linq;
 
 namespace TableStore.Controllers
 {
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;

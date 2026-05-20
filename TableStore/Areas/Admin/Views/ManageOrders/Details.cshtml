@@ -1,0 +1,63 @@
+@model TableStore.Models.Order
+
+@{
+    ViewData["Title"] = "Chi tiết Đơn hàng";
+    var product = Model.OrderDetails?.FirstOrDefault()?.Product;
+}
+
+<div class="container mt-4">
+    <h2>Chi tiết Đơn hàng #@Model.Id</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Thông tin khách hàng</h4>
+            <dl class="row">
+                <dt class="col-sm-4">Khách hàng</dt>
+                <dd class="col-sm-8">@Model.FullName</dd>
+                
+                <dt class="col-sm-4">Tài khoản</dt>
+                <dd class="col-sm-8">@Model.User?.Email</dd>
+
+                <dt class="col-sm-4">SĐT</dt>
+                <dd class="col-sm-8">@Model.PhoneNumber</dd>
+
+                <dt class="col-sm-4">Địa chỉ</dt>
+                <dd class="col-sm-8">@Model.Address</dd>
+
+                <dt class="col-sm-4">Ngày đặt</dt>
+                <dd class="col-sm-8">@Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</dd>
+                
+                <dt class="col-sm-4">Thanh toán</dt>
+                <dd class="col-sm-8">@Model.PaymentMethod</dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <h4>Sản phẩm đã đặt</h4>
+            @if(product != null)
+            {
+                <div class="card mb-3 shadow-sm">
+                    <div class="row g-0">
+                        <div class="col-md-4 text-center p-2">
+                            @if (!string.IsNullOrEmpty(product.ImageUrl))
+                            {
+                                <img src="@product.ImageUrl" class="img-fluid rounded-start" alt="@product.Name" style="max-height:120px;">
+                            }
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@product.Name</h5>
+                                <p class="card-text text-danger">Giá: @product.Price.ToString("N0") VNĐ</p>
+                                <p class="card-text"><small class="text-muted">Số lượng: 1</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <h4 class="mt-4 text-end text-danger">Tổng cộng: @Model.TotalAmount.ToString("N0") VNĐ</h4>
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
+    </div>
+</div>

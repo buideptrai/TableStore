@@ -1,0 +1,69 @@
+@model TableStore.Models.Order
+
+@{
+    ViewData["Title"] = "Thanh toán";
+    var product = Model.OrderDetails.First().Product;
+}
+
+<div class="container mt-4">
+    <h2>Xác nhận Đơn Hàng</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Thông tin giao hàng</h4>
+            <form asp-action="ProcessCheckout" method="post">
+                <input type="hidden" name="productId" value="@product.Id" />
+                
+                <div class="form-group mb-3">
+                    <label asp-for="FullName" class="control-label">Họ và tên</label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group mb-3">
+                    <label asp-for="PhoneNumber" class="control-label">Số điện thoại</label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Address" class="control-label">Địa chỉ nhận hàng</label>
+                    <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label asp-for="PaymentMethod" class="control-label">Phương thức thanh toán</label>
+                    <select asp-for="PaymentMethod" class="form-control">
+                        <option value="Thanh toán khi nhận hàng">Thanh toán khi nhận hàng (COD)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success btn-lg w-100">Xác Nhận Đặt Hàng</button>
+            </form>
+        </div>
+        
+        <div class="col-md-6">
+            <h4>Sản phẩm đang mua</h4>
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    @if (!string.IsNullOrEmpty(product.ImageUrl))
+                    {
+                        <img src="@product.ImageUrl" class="img-fluid mb-3" style="max-height: 200px;" alt="@product.Name" />
+                    }
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text text-danger font-weight-bold" style="font-size: 1.25rem;">@product.Price.ToString("N0") VNĐ</p>
+                    <hr />
+                    <div class="d-flex justify-content-between">
+                        <strong>Tổng cộng:</strong>
+                        <strong class="text-danger">@Model.TotalAmount.ToString("N0") VNĐ</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

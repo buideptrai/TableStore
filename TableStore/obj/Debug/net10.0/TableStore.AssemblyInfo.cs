@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("TableStore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be625df935c5c8555eb7dade9bee1447db8a9a4b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+46bd4eb22ca2590b1e968a4c11b3dc1c429638eb")]
 [assembly: System.Reflection.AssemblyProductAttribute("TableStore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TableStore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

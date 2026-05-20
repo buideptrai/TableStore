@@ -1,0 +1,47 @@
+@using Microsoft.AspNetCore.Identity
+@model IEnumerable<TableStore.Models.ApplicationUser>
+@inject UserManager<TableStore.Models.ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Quản lý Khách hàng";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Quản lý Khách hàng</h2>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="ps-4">Email / Tài khoản</th>
+                        <th>Họ và Tên</th>
+                        <th class="pe-4">Phân quyền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        var roles = await UserManager.GetRolesAsync(user);
+                        <tr>
+                            <td class="ps-4 align-middle">@user.Email</td>
+                            <td class="align-middle">@user.FullName</td>
+                            <td class="pe-4 align-middle">
+                                @if (roles.Contains("Admin"))
+                                {
+                                    <span class="badge bg-danger rounded-pill px-3 py-2">Admin</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary rounded-pill px-3 py-2">User</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

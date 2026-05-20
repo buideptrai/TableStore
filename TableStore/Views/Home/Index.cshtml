@@ -26,6 +26,7 @@
                         <h5 class="card-title">@item.Name</h5>
                         <p class="card-text text-danger font-weight-bold">@item.Price.ToString("N0") VNĐ</p>
                         <p class="card-text flex-grow-1">@item.Description</p>
+                        <a asp-controller="Orders" asp-action="Checkout" asp-route-productId="@item.Id" class="btn btn-primary mt-auto">Mua Ngay</a>
                     </div>
                 </div>
             </div>
