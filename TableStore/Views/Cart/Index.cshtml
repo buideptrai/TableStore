@@ -1,0 +1,77 @@
+@model List<TableStore.Models.CartItem>
+@{
+    ViewData["Title"] = "Giỏ hàng";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Giỏ hàng của bạn</h2>
+
+    @if (Model.Count == 0)
+    {
+        <div class="alert alert-info">
+            Giỏ hàng đang trống. <a asp-controller="Home" asp-action="Index" class="alert-link">Tiếp tục mua sắm</a>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive shadow-sm rounded">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Giá</th>
+                        <th style="width: 150px;">Số lượng</th>
+                        <th>Thành tiền</th>
+                        <th class="text-center">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                    {
+                                        <img src="@item.ImageUrl" alt="@item.ProductName" class="rounded me-3" style="width: 60px; height: 60px; object-fit: cover;" />
+                                    }
+                                    <span class="fw-semibold">@item.ProductName</span>
+                                </div>
+                            </td>
+                            <td class="text-danger fw-bold">@item.Price.ToString("N0") VNĐ</td>
+                            <td>
+                                <form asp-action="UpdateQuantity" method="post" class="d-flex align-items-center">
+                                    <input type="hidden" name="productId" value="@item.ProductId" />
+                                    <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control form-control-sm me-2" style="width: 70px;" />
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary">Cập nhật</button>
+                                </form>
+                            </td>
+                            <td class="text-danger fw-bold">@((item.Price * item.Quantity).ToString("N0")) VNĐ</td>
+                            <td class="text-center">
+                                <form asp-action="RemoveFromCart" method="post">
+                                    <input type="hidden" name="productId" value="@item.ProductId" />
+                                    <button type="submit" class="btn btn-sm btn-danger rounded-circle px-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                          <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot class="table-light">
+                    <tr>
+                        <td colspan="3" class="text-end fw-bold">Tổng cộng:</td>
+                        <td colspan="2" class="text-danger fw-bold fs-5">@Model.Sum(x => x.Price * x.Quantity).ToString("N0") VNĐ</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="d-flex justify-content-end mt-4">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary me-3">Tiếp tục mua sắm</a>
+            <a asp-controller="Orders" asp-action="CheckoutCart" class="btn btn-primary px-4 fw-bold">Thanh toán ngay</a>
+        </div>
+    }
+</div>

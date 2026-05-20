@@ -1,0 +1,59 @@
+@model IEnumerable<TableStore.Models.Order>
+
+@{
+    ViewData["Title"] = "Lịch sử mua hàng";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Lịch sử mua hàng</h2>
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">Bạn chưa có đơn hàng nào.</div>
+    }
+    else
+    {
+        <div class="accordion" id="ordersAccordion">
+            @foreach (var order in Model)
+            {
+                <div class="accordion-item mb-3 shadow-sm border">
+                    <h2 class="accordion-header" id="heading@(order.Id)">
+                        <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse@(order.Id)" aria-expanded="false" aria-controls="collapse@(order.Id)">
+                            <div class="d-flex justify-content-between w-100 me-3">
+                                <span><strong>Đơn hàng #@order.Id</strong> - @order.OrderDate.ToString("dd/MM/yyyy HH:mm")</span>
+                                <span class="text-danger fw-bold">@order.TotalAmount.ToString("N0") VNĐ</span>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapse@(order.Id)" class="accordion-collapse collapse" aria-labelledby="heading@(order.Id)" data-bs-parent="#ordersAccordion">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col-md-6 border-end">
+                                    <h5>Thông tin giao hàng</h5>
+                                    <p class="mb-1"><strong>Người nhận:</strong> @order.FullName</p>
+                                    <p class="mb-1"><strong>SĐT:</strong> @order.PhoneNumber</p>
+                                    <p class="mb-1"><strong>Địa chỉ:</strong> @order.Address</p>
+                                    <p class="mb-0"><strong>Thanh toán:</strong> @order.PaymentMethod</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Chi tiết sản phẩm</h5>
+                                    <ul class="list-group list-group-flush">
+                                        @foreach(var detail in order.OrderDetails)
+                                        {
+                                            <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-1 border-0">
+                                                <span>
+                                                    @detail.Product?.Name
+                                                    <span class="badge bg-secondary rounded-pill ms-2">x @detail.Quantity</span>
+                                                </span>
+                                                <span>@detail.Price.ToString("N0") VNĐ</span>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

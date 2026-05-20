@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Hóa Đơn";
-    var product = Model.OrderDetails.FirstOrDefault()?.Product;
 }
 
 <div class="container mt-5">
@@ -39,14 +38,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (product != null)
+                        @{ int stt = 1; }
+                        @foreach (var detail in Model.OrderDetails)
                         {
                             <tr>
-                                <td class="center">1</td>
-                                <td class="left">@product.Name</td>
-                                <td class="right">@product.Price.ToString("N0") VNĐ</td>
-                                <td class="center">1</td>
-                                <td class="right text-danger font-weight-bold">@product.Price.ToString("N0") VNĐ</td>
+                                <td class="center">@(stt++)</td>
+                                <td class="left">@detail.Product?.Name</td>
+                                <td class="right">@detail.Price.ToString("N0") VNĐ</td>
+                                <td class="center">@detail.Quantity</td>
+                                <td class="right text-danger font-weight-bold">@((detail.Price * detail.Quantity).ToString("N0")) VNĐ</td>
                             </tr>
                         }
                     </tbody>

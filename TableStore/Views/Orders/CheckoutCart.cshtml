@@ -1,0 +1,78 @@
+@model TableStore.Models.Order
+
+@{
+    ViewData["Title"] = "Thanh toán Giỏ Hàng";
+}
+
+<div class="container mt-4">
+    <h2>Xác nhận Đơn Hàng từ Giỏ Hàng</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Thông tin giao hàng</h4>
+            <form asp-action="ProcessCheckoutCart" method="post">
+                <div class="form-group mb-3">
+                    <label asp-for="FullName" class="control-label">Họ và tên</label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group mb-3">
+                    <label asp-for="PhoneNumber" class="control-label">Số điện thoại</label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Address" class="control-label">Địa chỉ nhận hàng</label>
+                    <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label asp-for="PaymentMethod" class="control-label">Phương thức thanh toán</label>
+                    <select asp-for="PaymentMethod" class="form-control">
+                        <option value="Thanh toán khi nhận hàng">Thanh toán khi nhận hàng (COD)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success btn-lg w-100">Xác Nhận Đặt Hàng</button>
+            </form>
+        </div>
+        
+        <div class="col-md-6">
+            <h4>Sản phẩm trong giỏ</h4>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush mb-3">
+                        @foreach(var item in Model.OrderDetails)
+                        {
+                            <li class="list-group-item d-flex justify-content-between lh-sm px-0">
+                                <div class="d-flex align-items-center">
+                                    @if (!string.IsNullOrEmpty(item.Product.ImageUrl))
+                                    {
+                                        <img src="@item.Product.ImageUrl" alt="@item.Product.Name" class="rounded me-2" style="width: 40px; height: 40px; object-fit: cover;" />
+                                    }
+                                    <div>
+                                        <h6 class="my-0">@item.Product.Name</h6>
+                                        <small class="text-muted">Số lượng: @item.Quantity</small>
+                                    </div>
+                                </div>
+                                <span class="text-muted d-flex align-items-center">@((item.Price * item.Quantity).ToString("N0")) VNĐ</span>
+                            </li>
+                        }
+                    </ul>
+                    <hr />
+                    <div class="d-flex justify-content-between font-weight-bold fs-5">
+                        <span>Tổng cộng:</span>
+                        <span class="text-danger">@Model.TotalAmount.ToString("N0") VNĐ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
