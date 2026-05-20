@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using TableStore.Models;
 
 namespace TableStore.Models
@@ -10,6 +10,6 @@ namespace TableStore.Models
             : base(options)
         {
         }
-        public DbSet<TableStore.Models.Category> Category { get; set; } = default!;
+        public DbSet<TableStore.Models.Product> Products { get; set; } = default!;
     }
 }

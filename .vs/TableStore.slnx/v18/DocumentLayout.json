@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\PC\\Documents\\GitHub\\TableStore\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{10A685C3-69C8-3248-9A5E-02BB03846918}|TableStore\\TableStore.csproj|c:\\users\\pc\\documents\\github\\tablestore\\tablestore\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10A685C3-69C8-3248-9A5E-02BB03846918}|TableStore\\TableStore.csproj|solutionrelative:tablestore\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\Documents\\GitHub\\TableStore\\TableStore\\Migrations\\20260520045353_RemoveCategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TableStore\\Migrations\\20260520045353_RemoveCategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{10A685C3-69C8-3248-9A5E-02BB03846918}|TableStore\\TableStore.csproj|c:\\users\\pc\\documents\\github\\tablestore\\tablestore\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{10A685C3-69C8-3248-9A5E-02BB03846918}|TableStore\\TableStore.csproj|solutionrelative:tablestore\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\Documents\\GitHub\\TableStore\\TableStore\\Migrations\\20260520042415_AddCategoryTable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TableStore\\Migrations\\20260520042415_AddCategoryTable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +22,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20260520045353_RemoveCategory.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\TableStore\\TableStore\\Migrations\\20260520045353_RemoveCategory.cs",
+              "RelativeDocumentMoniker": "TableStore\\Migrations\\20260520045353_RemoveCategory.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\TableStore\\TableStore\\Migrations\\20260520045353_RemoveCategory.cs",
+              "RelativeToolTip": "TableStore\\Migrations\\20260520045353_RemoveCategory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T04:53:53.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "20260520042415_AddCategoryTable.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\TableStore\\TableStore\\Migrations\\20260520042415_AddCategoryTable.cs",
+              "RelativeDocumentMoniker": "TableStore\\Migrations\\20260520042415_AddCategoryTable.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\TableStore\\TableStore\\Migrations\\20260520042415_AddCategoryTable.cs",
+              "RelativeToolTip": "TableStore\\Migrations\\20260520042415_AddCategoryTable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T04:24:16.208Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -28,21 +58,9 @@
               "RelativeDocumentMoniker": "TableStore\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\TableStore\\TableStore\\Controllers\\HomeController.cs",
               "RelativeToolTip": "TableStore\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAtwBEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T15:52:15.069Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CategoriesController.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\TableStore\\TableStore\\Controllers\\CategoriesController.cs",
-              "RelativeDocumentMoniker": "TableStore\\Controllers\\CategoriesController.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\TableStore\\TableStore\\Controllers\\CategoriesController.cs",
-              "RelativeToolTip": "TableStore\\Controllers\\CategoriesController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAlwBcAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T15:50:47.187Z",
+              "WhenOpened": "2026-05-19T15:52:15.069Z",
               "EditorCaption": ""
             }
           ]

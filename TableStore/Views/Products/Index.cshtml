@@ -1,0 +1,47 @@
+@model IEnumerable<TableStore.Models.Product>
+
+@{
+    ViewData["Title"] = "Quản lý Sản phẩm";
+}
+
+<h1>Quản lý Sản phẩm</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Thêm mới Sản phẩm</a>
+</p>
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Hình ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                {
+                    <img src="@item.ImageUrl" alt="@item.Name" style="max-height: 100px; max-width: 100px;" />
+                }
+                else
+                {
+                    <span>Không có ảnh</span>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="text-danger font-weight-bold">
+                @item.Price.ToString("N0") VNĐ
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-info">Sửa</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
